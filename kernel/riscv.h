@@ -202,6 +202,19 @@ r_satp()
   return x;
 }
 
+// Physical Memory Protection
+static inline void
+w_pmpcfg0(uint64 x)
+{
+  asm volatile("csrw pmpcfg0, %0" : : "r" (x));
+}
+
+static inline void
+w_pmpaddr0(uint64 x)
+{
+  asm volatile("csrw pmpaddr0, %0" : : "r" (x));
+}
+
 // Supervisor Scratch register, for early trap handler in trampoline.S.
 static inline void 
 w_sscratch(uint64 x)
